@@ -4,7 +4,7 @@
 	<div class="row">
 		{% for product in product %}
 		<div class="col-lg-4">
-			<img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+			<img class="thumbnail" src="{{product.img.url}}">
 			<div class="box-element product">
 				<h6><strong>{{product.name}}</strong></h6>
 				<hr>
@@ -12,7 +12,7 @@
 				<button  class="btn btn-outline-secondary add-btn" href="{% url 'cart' %}">Add to Cart</button>
 				<a class="btn btn-outline-success" href="#">View</a>
 				<h4 style="display: inline-block; float: right"><strong>{{product.price}}</strong></h4>
-				<h4 style="display: inline-block; float: right"><strong>{{product.digital}}</strong></h4>
+
 
 			</div>
 		</div>
@@ -23,7 +23,7 @@
 				<h6><strong>Product</strong></h6>
 				<hr>
 				
-				<button  class="btn btn-outline-secondary add-btn" href="{% url 'cart' %}">Add to Cart</button>
+				<a  class="btn btn-outline-secondary add-btn" href="{% url 'cart' %}">Add to Cart</a>
 				<a class="btn btn-outline-success" href="#">View</a>
 				<h4 style="display: inline-block; float: right"><strong>$20</strong></h4>
 				
