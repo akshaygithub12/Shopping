@@ -1,0 +1,10 @@
+    data = json.loads(request.data)
+    productId = data['productId']
+    action = data['action']
+    print('Action', action)
+    print('productId', productId)
+
+    customer = request.user.customer
+    product = Product.objects.get(id=productId)
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    orderitem, created = OrderItem.objects.get_or_create(order=order, Product=product)

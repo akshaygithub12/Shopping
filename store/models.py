@@ -28,6 +28,19 @@ class Order(models.Model):
     def __str__(self):
         return str(self.id)
 
+
+    @property
+
+    def shipping(self):
+        shipping=False
+        orderitems=self.orderitem_set.all()
+        for i in orderitems:
+            if i.product.digital==False:
+                shipping=True
+
+        return shipping
+
+
     @property
     def get_cart_total(self):
         orderitems=self.orderitem_set.all()
@@ -42,10 +55,10 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    product=models.ForeignKey(Product,on_delete=models.SET_NULL,null=True)
+    product = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True)
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField(default=0, null=True,blank=True)
-    date_added=models.DateTimeField(auto_now_add=True)
+    date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.id)
